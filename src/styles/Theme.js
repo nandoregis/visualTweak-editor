@@ -7,16 +7,16 @@ export default () => {
      *  de tema de cores de algum usuario.
      */
 
-    useEffect( () => {
+    // useEffect( () => {
 
-    }, []);
+    // }, []);
 
     return {
         colors: {
             text : 'white',
-            background: 'gray',
-            header: '#ccc',
-            menu: '#f9f9f9'
+            background: '#ccc',
+            header: '#585858',
+            menu: '#707070'
         }
     }
 }

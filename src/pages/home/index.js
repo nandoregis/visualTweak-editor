@@ -1,9 +1,17 @@
-import { Button } from "../../components/button/style";
+import { styled } from 'styled-components';
+import Banner from './banner';
+
+const Header = styled.header`
+    background-color: aliceblue;
+`;
+
 
 export default () => {
     return(
         <>
-            <Button>Clicar no meu botão</Button>
+            <Header>
+                <Banner/>
+            </Header>
         </>
     );
 }

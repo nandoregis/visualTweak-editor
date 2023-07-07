@@ -1,12 +1,29 @@
+import { styled } from "styled-components";
 
-export default ({ className, children}) => {
+const Wraper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    background: white;
+    padding: 0 12px;
+    border-radius: 5px;
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+const Text = styled.p`
+    padding-left: 5px;
+`;
+
+export default ( {icon, text}) => {
     return(
         <>
-            <div onClick={ () => {
-                alert('Olá, mundo')
-            }} className={className}>
-                {children}
-            </div>
+            <Wraper>
+                <img src={icon}/>
+                <Text>{text}</Text>
+            </Wraper>
         </>
     );
 }
