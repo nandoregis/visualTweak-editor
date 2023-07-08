@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-
+import Input from "./components/Input";
 
 const Sidebar = styled.div`
     width: 250px;
@@ -27,11 +28,17 @@ const Text = styled.p`
 
 const Span = styled.span`
     display: inline-block;
-    padding-left: 10px;
 `
 
-
 export default () => {
+    const [width, setWidth ] = useState(  );
+
+    useEffect( () => {
+        setWidth(100);
+    }, []);
+
+    
+
     return(
         <>
             <Sidebar>
@@ -39,11 +46,21 @@ export default () => {
                     <Title>Imagem atual</Title>
                     <Wraper>
                         <Box>
-                            <Text>Width: <Span>500</Span>  </Text>
+                            <Text>
+                                <Box>
+                                    <Span>width:</Span>
+                                    <Input initValue={width}/>
+                                </Box>
+                            </Text>
                             <Text>pixel</Text>
                         </Box>
                         <Box>
-                            <Text>Height: <Span>500</Span>  </Text>
+                            <Text>
+                                <Box>
+                                    <Span>height:</Span>
+                                    {/* <Input/> */}
+                                </Box>
+                            </Text>
                             <Text>pixel</Text>
                         </Box>
                     </Wraper>
