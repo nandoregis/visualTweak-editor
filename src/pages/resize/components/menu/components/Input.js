@@ -1,5 +1,4 @@
 
-import { useState, useEffect } from "react";
 import { styled } from "styled-components";
 
 const Input = styled.input`
@@ -17,24 +16,11 @@ const Input = styled.input`
     }
 `;
 
-export default ({ initValue }) => {
-    
-    const [resize, setResize] = useState();
-    const [initResize, setInitResize] = useState();
-
-    useEffect( () => {
-        setResize(initValue);
-    }, [initValue]);
-
-    const handleInput = (e) => {
-        let inputValue = e.target.value;
-        let resizeValue = inputValue.replace('e', '');
-        setResize(resizeValue);
-    }
+export default ({ value, onChange, enter }) => {
 
     return(
-        <>
-            <Input  onChange={handleInput} type="number" value={ resize }/>
+        <>  
+            <Input onKeyDown={enter} onChange={onChange} type="number" value={ value }/>
         </>
     );
 }
