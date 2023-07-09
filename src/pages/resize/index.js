@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 
 import Header from "../../components/header";
@@ -15,12 +16,20 @@ const FlexItems = styled.div`
 
 export default () => {
 
+    const [ width, setWidth ] = useState('');
+    const [ height, setHeight ] = useState('');
+
+    const handleChildStates = ( widthImg, heightImg) => {
+        setWidth(widthImg);
+        setHeight(heightImg);
+    }
+
     return(
         <>
             <Header/>
             <FlexItems>
-                <Editor/>
-                <Menu/>
+                <Editor onChildStateChange={handleChildStates}/>
+                <Menu widthImg={width} heightImg={height} />
             </FlexItems>
         </>
     );

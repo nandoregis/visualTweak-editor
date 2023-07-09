@@ -27,14 +27,14 @@ const Text = styled.p`
 `
 
 
-export default () => {
+export default ({ widthImg, heightImg}) => {
     const [width, setWidth ] = useState('');
     const [height, setHeight] = useState('');
 
     useEffect( () => {
-        setWidth('100');
-        setHeight('500');
-    }, []);
+        setWidth(widthImg);
+        setHeight(heightImg);
+    }, [ widthImg, heightImg]);
     
     const handleInputWidth = (e) => {
         setWidth(e.target.value);
@@ -49,8 +49,8 @@ export default () => {
 
         if( key === 'Enter') {
             // aparti daqui faz topa operação de alteração da img
-            console.log( typeof width);
-            console.log( typeof height);
+            console.log(width);
+            console.log(height);
         }
     }
 
@@ -66,7 +66,7 @@ export default () => {
                                 <Input
                                     enter={handleKeyDown} 
                                     onChange={handleInputWidth}
-                                    value={width}
+                                    value={ width}
                                 />
                             </Box>
                             
@@ -83,7 +83,7 @@ export default () => {
                             </Box>
                             <Text>pixel</Text>
                         </Box>
-                        <Enter/>
+                    
                     </Wraper>
                 </Wraper>
                 <Wraper>

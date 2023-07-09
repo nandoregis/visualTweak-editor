@@ -17,12 +17,17 @@ const Text = styled.p`
     padding-left: 5px;
 `;
 
-export default ( {icon, text}) => {
+export default ( {icon, text, color, background, width }) => {
     return(
         <>
-            <Wraper>
+            <Wraper style={{
+                width: width,
+                background: background
+            }}>
                 <img src={icon}/>
-                <Text>{text}</Text>
+                <Text style={{
+                    color: color,
+                }}>{text}</Text>
             </Wraper>
         </>
     );
