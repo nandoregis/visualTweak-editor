@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-
 const Img = styled.img`
-    transform: scale(0.40);
+    /* transform: scale(1); */
 `;
 
 export default ( {imgUrl, widthImg, heightImg}) => {
@@ -12,10 +11,9 @@ export default ( {imgUrl, widthImg, heightImg}) => {
     const [height, setHeight] = useState('');
 
     useEffect( () => {
-        setImageUrl(imgUrl);
         setWidth(widthImg);
         setHeight(heightImg);
-    });
+    }, [widthImg,heightImg]);
 
     const handleResize = () => {
         const canvas = document.createElement('canvas');
@@ -24,10 +22,9 @@ export default ( {imgUrl, widthImg, heightImg}) => {
         canvas.height = height;
         
         const img = new Image();
-        img.src = imageUrl;
+        img.src = imgUrl;
         
         ctx.drawImage(img, 0, 0, width, height);
-    
     
         img.onload = () => {
     
@@ -37,6 +34,8 @@ export default ( {imgUrl, widthImg, heightImg}) => {
           setImageUrl(resizedImageUrl);
         };
       };
+
+      handleResize();
 
     return(
         <>  

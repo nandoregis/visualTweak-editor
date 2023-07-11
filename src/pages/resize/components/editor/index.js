@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import InputFile from "./components/inputFile";
 import Canvas from './components/canvas';
@@ -17,12 +17,19 @@ const Center = styled.div`
 `;
 
 
-export default ({onChildStateChange}) => {
+export default ({onChildStateChange, widthImg, heightImg}) => {
 
     const [image, setImage] = useState('');
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
 
+    useEffect( () => {
+        setWidth(widthImg);
+        setHeight(heightImg);
+
+        console.log( 'W: ' + widthImg + ' H: ' + heightImg);
+
+    }, [widthImg, heightImg]);
 
     const handleFile = (e) => {
         const file = e.target.files[0];

@@ -26,8 +26,7 @@ const Text = styled.p`
     font-size: 15px;
 `
 
-
-export default ({ widthImg, heightImg}) => {
+export default ({ widthImg, heightImg, onChildStateChange}) => {
     const [width, setWidth ] = useState('');
     const [height, setHeight] = useState('');
 
@@ -37,20 +36,23 @@ export default ({ widthImg, heightImg}) => {
     }, [ widthImg, heightImg]);
     
     const handleInputWidth = (e) => {
-        setWidth(e.target.value);
+        let pixelWidth = e.target.value;
+        setWidth(pixelWidth);
     }
 
     const handleInputHeight = (e) => {
-        setHeight(e.target.value);
+        let pixelHeight = e.target.value
+        setHeight(pixelHeight);
+        
     }
-
+    
     const handleKeyDown = (e) => {
         let key = e.key;
-
+        
         if( key === 'Enter') {
             // aparti daqui faz topa operação de alteração da img
-            console.log(width);
-            console.log(height);
+            onChildStateChange(width, height);
+            
         }
     }
 

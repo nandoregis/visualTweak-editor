@@ -13,7 +13,6 @@ const FlexItems = styled.div`
     border: 2px solid black;
 `
 
-
 export default () => {
 
     const [ width, setWidth ] = useState('');
@@ -28,8 +27,8 @@ export default () => {
         <>
             <Header/>
             <FlexItems>
-                <Editor onChildStateChange={handleChildStates}/>
-                <Menu widthImg={width} heightImg={height} />
+                <Editor onChildStateChange={handleChildStates} widthImg={width} heightImg={height} />
+                <Menu onChildStateChange={handleChildStates} widthImg={width} heightImg={height} />
             </FlexItems>
         </>
     );
