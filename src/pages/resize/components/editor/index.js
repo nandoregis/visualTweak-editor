@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import InputFile from "./components/inputFile";
 import Canvas from './components/canvas';
+import ResizeBoll from "./components/resizeBoll";
 
 const Contents = styled.div`
-    width: 100%;
+    width: calc(100% - 250px);
     overflow: auto;
     background-color: ${ ({theme}) => theme.colors.background };
 `;
@@ -16,6 +17,9 @@ const Center = styled.div`
     height: 100%;
 `;
 
+const Group = styled.div`
+    position: relative;
+`;
 
 export default ({onChildStateChange, widthImg, heightImg}) => {
 
@@ -52,6 +56,12 @@ export default ({onChildStateChange, widthImg, heightImg}) => {
         }
     }
 
+    const getChildState = (w, h) => {
+        setWidth(w);
+        setHeight(h);
+        onChildStateChange(w, h);
+    }
+
     return(
         <>
             <Contents>
@@ -59,7 +69,10 @@ export default ({onChildStateChange, widthImg, heightImg}) => {
                     image ? 
                     <>  
                         <Center>
-                            <Canvas imgUrl={image} widthImg={width} heightImg={height}/>
+                            <Group>
+                                <ResizeBoll width={width} height={height} getChildState={getChildState}/>
+                                <Canvas imgUrl={image} widthImg={width} heightImg={height}/>
+                            </Group>
                         </Center>
                     </>
                     :

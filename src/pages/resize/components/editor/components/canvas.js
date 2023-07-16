@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
+
 const Img = styled.img`
     /* transform: scale(1); */
 `;
@@ -39,7 +40,7 @@ export default ( {imgUrl, widthImg, heightImg}) => {
 
     return(
         <>  
-            <Img src={imageUrl} alt="Resized" />
+            <Img src={imageUrl} alt="Carregando..." />
         </>
     );
 }

@@ -10,16 +10,15 @@ const FlexItems = styled.div`
     width: 100%;
     height: calc( 100vh - 70px);
     justify-content: space-between;
-    border: 2px solid black;
-`
+`;
 
 export default () => {
 
     const [ width, setWidth ] = useState('');
     const [ height, setHeight ] = useState('');
 
-    const handleChildStates = ( widthImg, heightImg) => {
-        setWidth(widthImg);
+    const handleChildStates = (widthImg, heightImg) => {
+        setWidth(widthImg );
         setHeight(heightImg);
     }
 
