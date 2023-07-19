@@ -40,7 +40,9 @@ export default ( {imgUrl, widthImg, heightImg}) => {
 
     return(
         <>  
-            <Img src={imageUrl} alt="Carregando..." />
+            {
+               width && height && <Img src={imageUrl} alt="Carregando..." />
+            }
         </>
     );
 }

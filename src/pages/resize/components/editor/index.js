@@ -31,8 +31,6 @@ export default ({onChildStateChange, widthImg, heightImg}) => {
         setWidth(widthImg);
         setHeight(heightImg);
 
-        console.log( 'W: ' + widthImg + ' H: ' + heightImg);
-
     }, [widthImg, heightImg]);
 
     const handleFile = (e) => {
@@ -56,12 +54,6 @@ export default ({onChildStateChange, widthImg, heightImg}) => {
         }
     }
 
-    const getChildState = (w, h) => {
-        setWidth(w);
-        setHeight(h);
-        onChildStateChange(w, h);
-    }
-
     return(
         <>
             <Contents>
@@ -70,7 +62,7 @@ export default ({onChildStateChange, widthImg, heightImg}) => {
                     <>  
                         <Center>
                             <Group>
-                                <ResizeBoll width={width} height={height} getChildState={getChildState}/>
+                                <ResizeBoll width={width} height={height} getChildState={onChildStateChange}/>
                                 <Canvas imgUrl={image} widthImg={width} heightImg={height}/>
                             </Group>
                         </Center>

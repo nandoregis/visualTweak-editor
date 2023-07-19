@@ -69,7 +69,6 @@ export default ({width, height, getChildState}) => {
     const positionInitImgY = Math.ceil((divHeight - heightImg) / 2);
     //-------
 
-
     useEffect( () => {
         setWidthImg(width);
         setHeightImg(height);    
@@ -91,95 +90,107 @@ export default ({width, height, getChildState}) => {
     }, []);
 
     const handleMoveLineWidth = (e) => {
-        let valueDiference = 0;
-        let valueWidthImg = widthImg; 
         
         setMoveLineW(!moveLineW);
         setMoveXLimit(e.clientX);
         setPosLineFixedWidth(moveX);
         
-        if(moveLineW) {
-            
-            if( moveX < moveXLimit ) {
-                valueDiference = moveXLimit - moveX;
-                valueWidthImg = widthImg + valueDiference;
-
-            } else if( moveX > moveXLimit ) { 
-                valueWidthImg = widthImg - moveX;
-            }
-            
-
-            getChildState(valueWidthImg, heightImg);
-            setPosLineFixedWidth(0);
-            
-        }
-
+        moveLineW && modifyWidthImage();
 
     }
 
-    const  handleMoveLineHeight = (e) => {
+    const modifyWidthImage = () => {
         let valueDiference = 0;
-        let valueHeightImg = heightImg;
+        let valueWidthImg = widthImg; 
+        
+        if( moveX < moveXLimit ) 
+        {
+            valueDiference = moveXLimit - moveX;
+            valueWidthImg = widthImg + valueDiference;
+
+        } else if( moveX > moveXLimit ) 
+        { 
+            valueDiference = moveX - moveXLimit;
+            valueWidthImg = widthImg - valueDiference;
+        }
+
+        getChildState(valueWidthImg, heightImg);
+        setPosLineFixedWidth(0);
+    }
+
+    const  handleMoveLineHeight = (e) => {
 
         setMoveLineH(!moveLineH);
         setMoveYLimit(e.clientY);
         setPosLineFixedHeight(moveY);
 
-        if(moveLineH) {
+        moveLineH && modifyHeightImage();
+    }
 
-            if (moveY < moveYLimit) {
-                valueDiference = moveYLimit - moveX;
-                valueHeightImg = heightImg + valueDiference;
+    const modifyHeightImage = ()=> {
 
-            } else if( moveY > moveYLimit) {
-                valueDiference = moveY - moveYLimit;
-                valueHeightImg = heightImg - valueDiference;
-            }
-            
-            getChildState(widthImg, valueHeightImg);
-            setPosLineFixedHeight(0);
-            
+        let valueDiference = 0;
+        let valueHeightImg = heightImg;
+
+        if (moveY < moveYLimit) {
+            valueDiference = moveYLimit - moveX;
+            valueHeightImg = heightImg + valueDiference;
+
+        } else if( moveY > moveYLimit) {
+            valueDiference = moveY - moveYLimit;
+            valueHeightImg = heightImg - valueDiference;
         }
-
+        
+      
+        getChildState(widthImg, valueHeightImg);
+        setPosLineFixedHeight(0);
     }
 
    return(
-    <>
-       <Box style={{
-            top: paddingLine,
-            left: moveLineW ? moveX - positionInitImgX : posLineFixedWidth,
-       }}>
-            <Boll 
-                style={{
-                    left: -10,
-                    top: -20,
-                }}
-                onClick={handleMoveLineWidth}
-            >
-                <Icon src={IconResizeWidth}/>
-            </Boll>
-            <LineW style={{
-                height: heightImg + Math.abs(paddingLine),
-            }} />
-       </Box>
+    <>  
 
-       <Box style={{
-            left: paddingLine,
-            top: moveLineH ? moveY - positionInitImgY - 70 : posLineFixedHeight,
-       }}>
-            <Boll
-                style={{
-                    left: -20,
-                    top: -10,
-                }}
-                onMouseDown={handleMoveLineHeight}
-            >
-                <Icon src={IconResizeHeight}/>
-            </Boll>
-            <LineH style={{
-                width: widthImg + Math.abs(paddingLine),
-            }} />
-       </Box>
+        {
+            widthImg && heightImg &&
+            <>
+                <Box style={{
+                        top: paddingLine,
+                        left: moveLineW ? moveX - positionInitImgX : posLineFixedWidth,
+                }}>
+                    <Boll 
+                        style={{
+                            left: -10,
+                            top: -20,
+                        }}
+                        onClick={handleMoveLineWidth}
+                    >
+                        <Icon src={IconResizeWidth}/>
+                    </Boll>
+                    <LineW style={{
+                        height: heightImg + Math.abs(paddingLine),
+                    }} />
+                </Box>
+
+                <Box style={{
+                        left: paddingLine,
+                        top: moveLineH ? moveY - positionInitImgY - 70 : posLineFixedHeight,
+                }}>
+                    <Boll
+                        style={{
+                            left: -20,
+                            top: -10,
+                        }}
+                        onMouseDown={handleMoveLineHeight}
+                    >
+                        <Icon src={IconResizeHeight}/>
+                    </Boll>
+                    <LineH style={{
+                        width: widthImg + Math.abs(paddingLine),
+                    }} />
+                </Box>
+            
+            </>
+        }
+
     </>
    ); 
 }
