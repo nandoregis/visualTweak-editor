@@ -36,8 +36,16 @@ const LineH = styled.div`
 
 const Icon = styled.img``;
 
-export default ({width, height, getChildState}) => {
+const Feedback = styled.div`
+    position: absolute;
+    top: 100px;
+    left: 5px;
+    background: #f9f9f9;
+    color: #505050;
+    padding: 10px;
+`;
 
+export default ({width, height, getChildState}) => {
 
     // States
     const [widthImg, setWidthImg] = useState(0);
@@ -53,6 +61,8 @@ export default ({width, height, getChildState}) => {
     
     const [posLineFixedWidth, setPosLineFixedWidth] = useState(0);
     const [posLineFixedHeight, setPosLineFixedHeight] = useState(0);
+
+    const [valueFeedbackWidth, setValueFeedbackWidth] = useState(null);
 
     // variaveis normais.
     const paddingLine = -20; // espaçamento para Linhas n ficarem coladas é mais por estetica 
@@ -168,6 +178,15 @@ export default ({width, height, getChildState}) => {
                     <LineW style={{
                         height: heightImg + Math.abs(paddingLine),
                     }} />
+
+
+                    { valueFeedbackWidth && 
+
+                        <Feedback>
+                            {valueFeedbackWidth}
+                        </Feedback>
+                    }
+
                 </Box>
 
                 <Box style={{
